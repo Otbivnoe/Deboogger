@@ -10,9 +10,15 @@ import UIKit
 
 protocol Plugin {
     
-    // TODO: remove identifier
     var nib: UINib { get }
     var cellIdentifier: String { get }
     
     func configureCell(_ cell: UITableViewCell)
+}
+
+extension Plugin {
+    
+    var cellIdentifier: String {
+        return String(describing: type(of: nib))
+    }
 }

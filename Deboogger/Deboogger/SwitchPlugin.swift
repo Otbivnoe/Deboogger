@@ -27,10 +27,6 @@ extension SwitchPlugin {
         return UINib(nibName: String(describing: SwitchTableViewCell.self), bundle: nil)
     }
     
-    var cellIdentifier: String {
-        return String(describing: SwitchTableViewCell.self)
-    }
-    
     func configureCell(_ cell: UITableViewCell) {
         print("Configure")
     }
