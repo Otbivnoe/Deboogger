@@ -8,11 +8,15 @@
 
 import UIKit
 
+// TODO: Animate alpha
+
 final class TouchButton: UIButton {
     
-    private enum Layout {
+    fileprivate enum Layout {
         static let size: CGFloat = 50
     }
+    
+    fileprivate var beginPoint = CGPoint.zero
     
     init() {
         let size = Layout.size
@@ -50,20 +54,45 @@ final class TouchButton: UIButton {
 // MARK: - Touches
 
 extension TouchButton {
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        
+        guard let touch = touches.first else {
+            return
+        }
+        
+        beginPoint = touch.location(in: self)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
         
+        guard let touch = touches.first else {
+            return
+        }
+        
+        let currentPosition = touch.location(in: self)
+        let offsetX = currentPosition.x - beginPoint.x
+        let offsetY = currentPosition.y - beginPoint.y
+        
+        center.x += offsetX
+        center.y += offsetY
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIView.beginAnimations("move", context: nil)
+        UIView.setAnimationDuration(0.2)
         
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if negativeOffsets.isEmpty {
+            smallestOffset.remove()
+        }
+        else {
+            negativeOffsets.forEach { offset in
+                offset.remove()
+            }
+        }
         
+        UIView.commitAnimations()
     }
 }
