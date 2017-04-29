@@ -8,8 +8,6 @@
 
 import UIKit
 
-// TODO: Animate alpha
-
 final class TouchButton: UIButton {
     
     fileprivate enum Layout {
@@ -17,6 +15,11 @@ final class TouchButton: UIButton {
     }
     
     fileprivate var beginPoint = CGPoint.zero
+    fileprivate var timer: Timer?
+    
+    deinit {
+        stopTimer()
+    }
     
     init() {
         let size = Layout.size
@@ -24,7 +27,9 @@ final class TouchButton: UIButton {
         
         layer.cornerRadius = size / 2
         layer.masksToBounds = false
-        backgroundColor = .red
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.black.cgColor
+        backgroundColor = UIColor.black.withAlphaComponent(0.2)
         
         addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
@@ -34,20 +39,38 @@ final class TouchButton: UIButton {
     }
     
     override func didMoveToSuperview() {
-        guard let superview = superview else {
-            return
+        frame.origin.x = superview!.bounds.width - Layout.size
+        frame.origin.y = superview!.bounds.height/2 - Layout.size/2
+        
+        startTimer()
+    }
+    
+    // MARK: - Timer
+    
+    fileprivate func startTimer() {
+        timer?.invalidate()
+        timer = nil
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(update), userInfo: nil, repeats: false)
+    }
+    
+    @objc private func update() {
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 0.3
         }
+    }
+    
+    fileprivate func stopTimer() {
+         alpha = 1.0
         
-        center = superview.center
-        
-        frame.origin.x = superview.bounds.width - Layout.size
-        frame.origin.y = superview.bounds.height/2 - Layout.size/2
+        timer?.invalidate()
+        timer = nil
     }
     
     // MARK: - Actions
     
     @objc private func buttonPressed() {
-        
+        stopTimer()
+        startTimer()
     }
 }
 
@@ -62,6 +85,7 @@ extension TouchButton {
             return
         }
         
+        stopTimer()
         beginPoint = touch.location(in: self)
     }
     
@@ -81,6 +105,16 @@ extension TouchButton {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        endTouches(touches, with: event)
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        endTouches(touches, with: event)
+    }
+    
+    private func endTouches(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIView.beginAnimations("move", context: nil)
         UIView.setAnimationDuration(0.2)
         
@@ -94,5 +128,7 @@ extension TouchButton {
         }
         
         UIView.commitAnimations()
+        
+        startTimer()
     }
 }
