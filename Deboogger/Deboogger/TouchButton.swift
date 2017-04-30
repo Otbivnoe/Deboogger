@@ -32,6 +32,11 @@ final class TouchButton: UIButton {
         backgroundColor = UIColor.black.withAlphaComponent(0.2)
         
         addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(orientationChanged),
+                                               name: NSNotification.Name.UIDeviceOrientationDidChange,
+                                               object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,6 +48,10 @@ final class TouchButton: UIButton {
         frame.origin.y = superview!.bounds.height/2 - Layout.size/2
         
         startTimer()
+    }
+    
+    @objc private func orientationChanged() {
+        removeOffset()
     }
     
     // MARK: - Timer
@@ -106,15 +115,15 @@ extension TouchButton {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        endTouches(touches, with: event)
+        removeOffset()
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
-        endTouches(touches, with: event)
+        removeOffset()
     }
     
-    private func endTouches(_ touches: Set<UITouch>, with event: UIEvent?) {
+    fileprivate func removeOffset() {
         UIView.beginAnimations("move", context: nil)
         UIView.setAnimationDuration(0.2)
         
