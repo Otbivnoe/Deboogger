@@ -28,6 +28,6 @@ extension SwitchPlugin {
     }
     
     func configureCell(_ cell: UITableViewCell) {
-        print("Configure")
+        (cell as? SwitchTableViewCell)?.configure(by: self)
     }
 }

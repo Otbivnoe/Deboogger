@@ -14,6 +14,10 @@ struct TestPlugin: SwitchPlugin {
         return "Title"
     }
     
+    var description: String? {
+        return nil
+    }
+    
     var isOn: Bool {
         return true
     }

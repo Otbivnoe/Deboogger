@@ -8,19 +8,12 @@
 
 import UIKit
 
-final class SwitchTableViewCell: UITableViewCell {
+final class SwitchTableViewCell: BaseTableViewCell {
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet weak var `switch`: UISwitch!
     
     private var plugin: SwitchPlugin?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
+
     @IBAction func valueChanged(_ sender: UISwitch) {
         plugin?.handleSwitchEvent(isOn: sender.isOn)
     }

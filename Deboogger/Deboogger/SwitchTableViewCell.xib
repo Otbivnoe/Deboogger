@@ -24,17 +24,17 @@
                             <action selector="valueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="VLB-7I-deo"/>
                         </connections>
                     </switch>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="G2m-kk-F7B">
-                        <rect key="frame" x="10" y="10" width="458" height="198.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="G2m-kk-F7B">
+                        <rect key="frame" x="10" y="78.5" width="458" height="61.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA6-1N-c4D">
-                                <rect key="frame" x="0.0" y="0.0" width="458" height="99.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA6-1N-c4D">
+                                <rect key="frame" x="0.0" y="0.0" width="458" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9db-KZ-vn2">
-                                <rect key="frame" x="0.0" y="99.5" width="458" height="99"/>
+                                <rect key="frame" x="0.0" y="41" width="458" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -43,20 +43,23 @@
                     </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="G2m-kk-F7B" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2Ab-ty-ch3"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SQK-lz-5Wy" secondAttribute="bottom" constant="30" id="ABI-zr-yvf"/>
                     <constraint firstItem="SQK-lz-5Wy" firstAttribute="leading" secondItem="G2m-kk-F7B" secondAttribute="trailing" constant="10" id="E0y-fL-pov"/>
                     <constraint firstAttribute="trailing" secondItem="SQK-lz-5Wy" secondAttribute="trailing" constant="10" id="G9w-V4-kye"/>
                     <constraint firstItem="G2m-kk-F7B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="J8I-5A-FmY"/>
-                    <constraint firstItem="G2m-kk-F7B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Ln9-84-jkf"/>
-                    <constraint firstAttribute="bottom" secondItem="G2m-kk-F7B" secondAttribute="bottom" constant="10" id="aAB-f0-Ml2"/>
+                    <constraint firstItem="G2m-kk-F7B" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Ln9-84-jkf"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="G2m-kk-F7B" secondAttribute="bottom" constant="10" id="aAB-f0-Ml2"/>
                     <constraint firstItem="SQK-lz-5Wy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eDR-TL-qj2"/>
+                    <constraint firstItem="SQK-lz-5Wy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="jeZ-yW-CTD"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="descriptionLabel" destination="9db-KZ-vn2" id="UQc-iR-hgH"/>
+                <outlet property="descriptionLabel" destination="9db-KZ-vn2" id="Fvo-oq-W2r"/>
                 <outlet property="switch" destination="SQK-lz-5Wy" id="vyf-LP-Bg0"/>
-                <outlet property="titleLabel" destination="OA6-1N-c4D" id="4Dd-58-vu2"/>
+                <outlet property="titleLabel" destination="OA6-1N-c4D" id="iUf-ly-GRP"/>
             </connections>
-            <point key="canvasLocation" x="-115" y="37"/>
+            <point key="canvasLocation" x="-436" y="-7"/>
         </tableViewCell>
     </objects>
 </document>

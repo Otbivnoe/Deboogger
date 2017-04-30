@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var plugins = [Plugin]()
+    fileprivate var plugins = [Plugin]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +23,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         
-        
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        tableView.estimatedRowHeight = 100
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension ViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+}
+
+// MARK: - UITableViewDataSource
+
+extension ViewController: UITableViewDataSource {
+ 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let plugin = plugins[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: plugin.cellIdentifier, for: indexPath)
