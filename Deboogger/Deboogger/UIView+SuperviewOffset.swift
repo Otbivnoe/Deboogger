@@ -8,74 +8,47 @@
 
 import UIKit
 
-protocol Offset {
-    var value: CGFloat { get }
-    func remove()
-}
-
-class BaseOffset {
-    let view: UIView
-    init(view: UIView) {
-        self.view = view
-    }
-}
-
-final class TopOffset: BaseOffset, Offset {
+enum Offset {
+    case top(UIView)
+    case left(UIView)
+    case bottom(UIView)
+    case right(UIView)
+    
     var value: CGFloat {
-        return view.frame.origin.y
+        switch self {
+        case let .top(view):    return view.frame.origin.y
+        case let .left(view):   return view.frame.origin.x
+        case let .bottom(view): return view.superview!.bounds.height - (view.frame.origin.y + view.bounds.height)
+        case let .right(view):  return view.superview!.bounds.width - (view.frame.origin.x + view.bounds.width)
+        }
     }
     
     func remove() {
-        view.frame.origin.y -= value
-    }
-}
-
-final class LeftOffset: BaseOffset, Offset {
-    var value: CGFloat {
-        return view.frame.origin.x
-    }
-    
-    func remove() {
-        view.frame.origin.x -= value
-    }
-}
-
-final class BottomOffset: BaseOffset, Offset {
-    var value: CGFloat {
-        return view.superview!.bounds.height - (view.frame.origin.y + view.bounds.height)
-    }
-    
-    func remove() {
-        view.frame.origin.y += value
-    }
-}
-
-final class RightOffset: BaseOffset, Offset {
-    var value: CGFloat {
-        return view.superview!.bounds.width - (view.frame.origin.x + view.bounds.width)
-    }
-    
-    func remove() {
-        view.frame.origin.x += value
+        switch self {
+        case let .top(view):    view.frame.origin.y -= value
+        case let .left(view):   view.frame.origin.x -= value
+        case let .bottom(view): view.frame.origin.y += value
+        case let .right(view):  view.frame.origin.x += value
+        }
     }
 }
 
 extension UIView {
   
-    private var topOffset: TopOffset {
-        return TopOffset(view: self)
+    private var topOffset: Offset {
+        return .top(self)
     }
     
-    private var leftOffset: LeftOffset {
-        return LeftOffset(view: self)
+    private var leftOffset: Offset {
+        return .left(self)
     }
     
-    private var bottomOffset: BottomOffset {
-        return BottomOffset(view: self)
+    private var bottomOffset: Offset {
+        return .bottom(self)
     }
     
-    private var rightOffset: RightOffset {
-        return RightOffset(view: self)
+    private var rightOffset: Offset {
+        return .right(self)
     }
     
     private var offsets: [Offset] {
