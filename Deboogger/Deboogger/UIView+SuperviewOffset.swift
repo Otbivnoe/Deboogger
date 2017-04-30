@@ -1,5 +1,5 @@
 //
-//  UIView+Offset.swift
+//  UIView+SuperviewOffset.swift
 //  Deboogger
 //
 //  Created by Nikita Ermolenko on 29/04/2017.
@@ -60,7 +60,7 @@ final class RightOffset: BaseOffset, Offset {
     }
 }
 
-extension TouchButton {
+extension UIView {
   
     private var topOffset: TopOffset {
         return TopOffset(view: self)
