@@ -1,5 +1,5 @@
 //
-//  DescriptionTableViewCell.swift
+//  ButtonTableViewCell.swift
 //  Deboogger
 //
 //  Created by Nikita Ermolenko on 30/04/2017.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-final class DescriptionTableViewCell: BaseTextTableViewCell {
+final class ButtonTableViewCell: BaseTextTableViewCell {
 
-    private var plugin: TextPlugin?
+    private var plugin: ButtonPlugin?
     
-    override func configure(by plugin: TextPlugin) {
+    func configure(by plugin: ButtonPlugin) {
         super.configure(by: plugin)
         self.plugin = plugin
     }

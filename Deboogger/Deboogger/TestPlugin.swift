@@ -6,7 +6,7 @@
 //  Copyright © 2017 Nikita Ermolenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct TestPlugin: SwitchPlugin {
     
@@ -22,7 +22,7 @@ struct TestPlugin: SwitchPlugin {
         return true
     }
     
-    func handleSwitchEvent(isOn: Bool) {
+    func switchStateChanged(_ sender: UISwitch) {
         print("handle")
     }
 }

@@ -1,5 +1,5 @@
 //
-//  BaseTableViewCell.swift
+//  BaseTextTableViewCell.swift
 //  Deboogger
 //
 //  Created by Nikita Ermolenko on 30/04/2017.
@@ -8,15 +8,19 @@
 
 import UIKit
 
-class BaseTableViewCell: UITableViewCell {
+class BaseTextTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         titleLabel.configureLikeTitle()
         descriptionLabel.configureLikeDescription()
+    }
+    
+    func configure(by plugin: TextPlugin) {
+        titleLabel.text = plugin.title
+        descriptionLabel.text = plugin.description
     }
 }

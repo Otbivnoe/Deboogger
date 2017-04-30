@@ -15,10 +15,3 @@ protocol Plugin {
     
     func configureCell(_ cell: UITableViewCell)
 }
-
-extension Plugin {
-    
-    var cellIdentifier: String {
-        return String(describing: type(of: nib))
-    }
-}

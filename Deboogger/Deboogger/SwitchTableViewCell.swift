@@ -8,19 +8,18 @@
 
 import UIKit
 
-final class SwitchTableViewCell: BaseTableViewCell {
+final class SwitchTableViewCell: BaseTextTableViewCell {
 
-    @IBOutlet weak var `switch`: UISwitch!
-    
+    @IBOutlet private weak var `switch`: UISwitch!
     private var plugin: SwitchPlugin?
 
     @IBAction func valueChanged(_ sender: UISwitch) {
-        plugin?.handleSwitchEvent(isOn: sender.isOn)
+        plugin?.switchStateChanged(sender)
     }
 
     func configure(by plugin: SwitchPlugin) {
-        titleLabel.text = plugin.title
-        descriptionLabel.text = plugin.description
-        `switch`.isOn = plugin.isOn
+        super.configure(by: plugin)
+        self.plugin = plugin
+        self.switch.isOn = plugin.isOn
     }
 }
