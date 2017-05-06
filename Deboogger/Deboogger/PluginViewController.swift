@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PluginViewController.swift
 //  Deboogger
 //
 //  Created by Nikita Ermolenko on 22/04/2017.
@@ -8,32 +8,46 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class PluginViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 100
+        return tableView
+    }()
+    
     fileprivate var plugins = [Plugin]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(tableView)
+        
         let plugin = TestPlugin()
         plugins.append(plugin)
+        
         tableView.register(plugin.nib, forCellReuseIdentifier: plugin.cellIdentifier)
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        tableView.estimatedRowHeight = 100
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closeButtonPressed))
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
+    // MARK: Actions
+    
+    @objc private func closeButtonPressed() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
 // MARK: - UITableViewDelegate
 
-extension ViewController: UITableViewDelegate {
+extension PluginViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -42,7 +56,7 @@ extension ViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension ViewController: UITableViewDataSource {
+extension PluginViewController: UITableViewDataSource {
  
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let plugin = plugins[indexPath.row]

@@ -62,9 +62,9 @@ extension UIView {
     }
     
     var smallestOffset: Offset {
-        return offsets.min(by: { offset1, offset2 -> Bool in
+        return offsets.min { offset1, offset2 in
             offset1.value < offset2.value
-        })!
+        }!
     }
 }
 

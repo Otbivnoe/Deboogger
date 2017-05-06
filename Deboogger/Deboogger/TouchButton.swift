@@ -8,6 +8,9 @@
 
 import UIKit
 
+typealias TapHandler = () -> Void
+
+
 final class TouchButton: UIButton {
     
     fileprivate enum Layout {
@@ -17,12 +20,16 @@ final class TouchButton: UIButton {
     fileprivate var beginPoint = CGPoint.zero
     fileprivate var timer: Timer?
     
+    private var tapHandler: TapHandler
+    
     deinit {
         stopTimer()
     }
     
-    init() {
+    init(tapHandler: @escaping TapHandler) {
+        self.tapHandler = tapHandler
         let size = Layout.size
+        
         super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
         
         layer.cornerRadius = size / 2
@@ -80,6 +87,7 @@ final class TouchButton: UIButton {
     @objc private func buttonPressed() {
         stopTimer()
         startTimer()
+        tapHandler()
     }
 }
 
