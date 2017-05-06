@@ -20,6 +20,14 @@ final class PluginViewController: UIViewController {
     
     fileprivate var plugins = [Plugin]()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIApplication.topViewController!.preferredStatusBarStyle
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return UIApplication.topViewController!.prefersStatusBarHidden
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
