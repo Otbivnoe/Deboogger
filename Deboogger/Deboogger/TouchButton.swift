@@ -17,6 +17,7 @@ final class TouchButton: UIButton {
         static let size: CGFloat = 50
     }
     
+    fileprivate var isMoving = false
     fileprivate var beginPoint = CGPoint.zero
     fileprivate var timer: Timer?
     
@@ -85,6 +86,9 @@ final class TouchButton: UIButton {
     // MARK: - Actions
     
     @objc private func buttonPressed() {
+        if isMoving {
+            return
+        }
         stopTimer()
         startTimer()
         tapHandler()
@@ -119,6 +123,8 @@ extension TouchButton {
         
         center.x += offsetX
         center.y += offsetY
+        
+        isMoving = true
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -132,6 +138,8 @@ extension TouchButton {
     }
     
     fileprivate func removeOffset() {
+        isMoving = false
+        
         UIView.beginAnimations("move", context: nil)
         UIView.setAnimationDuration(0.2)
         
