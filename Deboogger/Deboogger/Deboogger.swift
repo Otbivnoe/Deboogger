@@ -10,10 +10,10 @@ import UIKit
 
 final class Deboogger {
     
-    static func configure() {
+    static func configure(with plugins: [Plugin]) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             let button = TouchButton(tapHandler: {
-                let navigationController = UINavigationController(rootViewController: PluginViewController())
+                let navigationController = UINavigationController(rootViewController: PluginViewController(plugins: plugins))
                 navigationController.present()
             })
             

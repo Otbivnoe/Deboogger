@@ -18,7 +18,7 @@ final class PluginViewController: UIViewController {
         return tableView
     }()
     
-    fileprivate var plugins = [Plugin]()
+    fileprivate var plugins: [Plugin]
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIApplication.topViewController!.preferredStatusBarStyle
@@ -28,15 +28,23 @@ final class PluginViewController: UIViewController {
         return UIApplication.topViewController!.prefersStatusBarHidden
     }
 
+    init(plugins: [Plugin]) {
+        self.plugins = plugins
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addSubview(tableView)
         
-        let plugin = TestPlugin()
-        plugins.append(plugin)
-        
-        tableView.register(plugin.nib, forCellReuseIdentifier: plugin.cellIdentifier)
+        plugins.forEach { plugin in
+            self.tableView.register(plugin.nib, forCellReuseIdentifier: plugin.cellIdentifier)
+        }
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closeButtonPressed))
     }
