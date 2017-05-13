@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol SwitchPlugin: TextPlugin {
+public protocol SwitchPlugin: TextPlugin {
 
     var isOn: Bool { get }
     func switchStateChanged(_ sender: UISwitch)
 }
 
-extension SwitchPlugin {
+public extension SwitchPlugin {
 
     var nib: UINib {
         return UINib(nibName: String(describing: SwitchTableViewCell.self), bundle: nil)

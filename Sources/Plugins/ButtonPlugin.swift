@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol ButtonPlugin: TextPlugin {
+public protocol ButtonPlugin: TextPlugin {
     
     func buttonPressed(_ sender: UIButton)
 }
 
-extension ButtonPlugin {
+public extension ButtonPlugin {
     
     var nib: UINib {
         return UINib(nibName: String(describing: ButtonTableViewCell.self), bundle: nil)

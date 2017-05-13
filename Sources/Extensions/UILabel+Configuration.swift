@@ -10,11 +10,11 @@ import UIKit
 
 extension UILabel {
     
-    func configureLikeTitle() {
+    public func configureLikeTitle() {
         
     }
     
-    func configureLikeDescription() {
+    public func configureLikeDescription() {
         
     }
 }

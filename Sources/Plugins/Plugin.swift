@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Plugin {
+public protocol Plugin {
     
     var nib: UINib { get }
     var cellIdentifier: String { get }

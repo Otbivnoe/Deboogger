@@ -10,7 +10,6 @@ import UIKit
 
 typealias TapHandler = () -> Void
 
-
 final class AssistiveButton: UIButton {
     
     fileprivate enum Layout {

@@ -8,9 +8,9 @@
 
 import UIKit
 
-final class Deboogger {
+public final class Deboogger {
     
-    static func configure(with plugins: [Plugin]) {
+    public static func configure(with plugins: [Plugin]) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             let button = AssistiveButton(tapHandler: {
                 let navigationController = UINavigationController(rootViewController: PluginViewController(plugins: plugins))

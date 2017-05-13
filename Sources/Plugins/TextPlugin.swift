@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol TextPlugin: Plugin {
+public protocol TextPlugin: Plugin {
     
     var title: String { get }
     var description: String? { get }
 }
 
-extension TextPlugin {
+public extension TextPlugin {
     
     var description: String? {
         return nil
