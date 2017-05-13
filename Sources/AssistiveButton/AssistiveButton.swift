@@ -1,5 +1,5 @@
 //
-//  TouchButton.swift
+//  AssistiveButton.swift
 //  Deboogger
 //
 //  Created by Nikita Ermolenko on 29/04/2017.
@@ -11,7 +11,7 @@ import UIKit
 typealias TapHandler = () -> Void
 
 
-final class TouchButton: UIButton {
+final class AssistiveButton: UIButton {
     
     fileprivate enum Layout {
         static let size: CGFloat = 50
@@ -97,7 +97,7 @@ final class TouchButton: UIButton {
 
 // MARK: - Touches
 
-extension TouchButton {
+extension AssistiveButton {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
