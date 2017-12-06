@@ -4,10 +4,10 @@
 
 import UIKit
 
-public protocol SwitchPlugin: TextPlugin {
+@objc public protocol SwitchPlugin: TextPlugin {
 
-    var isOn: Bool { get }
-    func switchStateChanged(_ sender: UISwitch)
+    @objc var isOn: Bool { get }
+    @objc func switchStateChanged(_ sender: UISwitch)
 }
 
 public extension SwitchPlugin {
