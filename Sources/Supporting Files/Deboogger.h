@@ -1,8 +1,4 @@
 //
-//  Deboogger.h
-//  Deboogger
-//
-//  Created by Nikita Ermolenko on 13/05/2017.
 //  Copyright © 2017 Nikita Ermolenko. All rights reserved.
 //
 

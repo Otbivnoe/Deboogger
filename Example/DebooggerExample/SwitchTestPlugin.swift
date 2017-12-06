@@ -1,8 +1,4 @@
 //
-//  SwitchTestPlugin.swift
-//  DebooggerExample
-//
-//  Created by Nikita Ermolenko on 14/05/2017.
 //  Copyright © 2017 Nikita Ermolenko. All rights reserved.
 //
 
@@ -11,12 +7,12 @@ import Deboogger
 
 struct SwitchTestPlugin: SwitchPlugin {
     
-    var title: String {
-        return "Title"
+    var title: NSAttributedString {
+        return NSAttributedString(string: "Title")
     }
     
-    var description: String? {
-        return "Description"
+    var description: NSAttributedString? {
+        return NSAttributedString(string: "Description")
     }
     
     var isOn: Bool {

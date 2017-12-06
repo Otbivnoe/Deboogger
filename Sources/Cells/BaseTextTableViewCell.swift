@@ -1,8 +1,4 @@
 //
-//  BaseTextTableViewCell.swift
-//  Deboogger
-//
-//  Created by Nikita Ermolenko on 30/04/2017.
 //  Copyright © 2017 Nikita Ermolenko. All rights reserved.
 //
 
@@ -15,12 +11,15 @@ class BaseTextTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        titleLabel.configureLikeTitle()
-        descriptionLabel.configureLikeDescription()
+        titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
+        descriptionLabel.font = .systemFont(ofSize: 14, weight: .thin)
     }
     
     func configure(by plugin: TextPlugin) {
-        titleLabel.text = plugin.title
-        descriptionLabel.text = plugin.description
+        titleLabel.attributedText = plugin.title
+        descriptionLabel.attributedText = plugin.description
+
+        setNeedsUpdateConstraints()
+        updateConstraintsIfNeeded()
     }
 }

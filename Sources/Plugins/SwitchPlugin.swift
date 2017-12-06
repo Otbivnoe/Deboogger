@@ -1,8 +1,4 @@
 //
-//  SwitchPlugin.swift
-//  Deboogger
-//
-//  Created by Nikita Ermolenko on 22/04/2017.
 //  Copyright © 2017 Nikita Ermolenko. All rights reserved.
 //
 
@@ -16,15 +12,17 @@ public protocol SwitchPlugin: TextPlugin {
 
 public extension SwitchPlugin {
 
+    private typealias Cell = SwitchTableViewCell
+    
     var nib: UINib {
-        return UINib(nibName: String(describing: SwitchTableViewCell.self), bundle: nil)
+        return UINib(nibName: String(describing: Cell.self), bundle: Bundle(for: Deboogger.self))
     }
     
     var cellIdentifier: String {
-        return String(describing: SwitchTableViewCell.self)
+        return String(describing: Cell.self)
     }
     
-    func configureCell(_ cell: UITableViewCell) {
-        (cell as? SwitchTableViewCell)?.configure(by: self)
+    func configure(_ cell: UITableViewCell) {
+        (cell as? Cell)?.configure(by: self)
     }
 }

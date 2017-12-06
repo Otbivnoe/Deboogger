@@ -4,19 +4,17 @@
 
 import UIKit
 
-public protocol TextPlugin: Plugin {
+public protocol SegmentPlugin: TextPlugin {
     
-    var title: NSAttributedString { get }
-    var description: NSAttributedString? { get }
+    var items: [String] { get }
+    var selectedIndex: Int { get }
+    
+    func segmentValueChanged(_ sender: UISegmentedControl)
 }
 
-public extension TextPlugin {
+public extension SegmentPlugin {
     
-    private typealias Cell = DescriptionTableViewCell
-    
-    var description: NSAttributedString? {
-        return nil
-    }
+    private typealias Cell = SegmentTableViewCell
     
     var nib: UINib {
         return UINib(nibName: String(describing: Cell.self), bundle: Bundle(for: Deboogger.self))

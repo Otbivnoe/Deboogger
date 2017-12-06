@@ -1,8 +1,4 @@
 //
-//  PluginViewController.swift
-//  Deboogger
-//
-//  Created by Nikita Ermolenko on 22/04/2017.
 //  Copyright © 2017 Nikita Ermolenko. All rights reserved.
 //
 
@@ -10,22 +6,24 @@ import UIKit
 
 final class PluginViewController: UIViewController {
 
-    private lazy var tableView: UITableView = {
+    private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 100
+        tableView.separatorInset = .zero
+        tableView.allowsSelection = false
         return tableView
     }()
     
-    fileprivate var plugins: [Plugin]
+    private var plugins: [Plugin]
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIApplication.topViewController!.preferredStatusBarStyle
+        return .default
     }
     
     override var prefersStatusBarHidden: Bool {
-        return UIApplication.topViewController!.prefersStatusBarHidden
+        return false
     }
 
     init(plugins: [Plugin]) {
@@ -39,13 +37,15 @@ final class PluginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        title = "Deboogger"
+        view.backgroundColor = .white
         view.addSubview(tableView)
         
         plugins.forEach { plugin in
             self.tableView.register(plugin.nib, forCellReuseIdentifier: plugin.cellIdentifier)
         }
-        
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closeButtonPressed))
     }
 
@@ -77,7 +77,7 @@ extension PluginViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let plugin = plugins[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: plugin.cellIdentifier, for: indexPath)
-        plugin.configureCell(cell)
+        plugin.configure(cell)
         return cell
     }
     

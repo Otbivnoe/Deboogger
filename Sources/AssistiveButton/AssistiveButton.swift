@@ -1,8 +1,4 @@
 //
-//  AssistiveButton.swift
-//  Deboogger
-//
-//  Created by Nikita Ermolenko on 29/04/2017.
 //  Copyright © 2017 Nikita Ermolenko. All rights reserved.
 //
 
@@ -12,15 +8,16 @@ typealias TapHandler = () -> Void
 
 final class AssistiveButton: UIButton {
     
-    fileprivate enum Layout {
+    private enum Layout {
         static let size: CGFloat = 50
     }
     
-    fileprivate var isMoving = false
-    fileprivate var beginPoint = CGPoint.zero
-    fileprivate var timer: Timer?
+    private var isMoving = false
+    private var beginPoint = CGPoint.zero
+    private var timer: Timer?
     
     private var tapHandler: TapHandler
+    private var touchBeganTime: TimeInterval?
     
     deinit {
         stopTimer()
@@ -32,14 +29,14 @@ final class AssistiveButton: UIButton {
         
         super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
         
+        setTitle("🛠", for: .normal)
+        
         layer.cornerRadius = size / 2
         layer.masksToBounds = false
         layer.borderWidth = 1
         layer.borderColor = UIColor.black.cgColor
         backgroundColor = UIColor.black.withAlphaComponent(0.2)
-        
-        addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(orientationChanged),
                                                name: NSNotification.Name.UIDeviceOrientationDidChange,
@@ -51,10 +48,11 @@ final class AssistiveButton: UIButton {
     }
     
     override func didMoveToSuperview() {
-        frame.origin.x = superview!.bounds.width - Layout.size
-        frame.origin.y = superview!.bounds.height/2 - Layout.size/2
-        
-        startTimer()
+        if let superview = superview {
+            frame.origin.x = superview.bounds.width - Layout.size
+            frame.origin.y = superview.bounds.height / 2.0 - Layout.size / 2.0
+            startTimer()
+        }
     }
     
     @objc private func orientationChanged() {
@@ -63,7 +61,7 @@ final class AssistiveButton: UIButton {
     
     // MARK: - Timer
     
-    fileprivate func startTimer() {
+    private func startTimer() {
         timer?.invalidate()
         timer = nil
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(update), userInfo: nil, repeats: false)
@@ -75,7 +73,7 @@ final class AssistiveButton: UIButton {
         }
     }
     
-    fileprivate func stopTimer() {
+    private func stopTimer() {
          alpha = 1.0
         
         timer?.invalidate()
@@ -100,6 +98,7 @@ extension AssistiveButton {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        touchBeganTime = event?.timestamp
         
         guard let touch = touches.first else {
             return
@@ -128,7 +127,13 @@ extension AssistiveButton {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        removeOffset()
+        if let beganTime = touchBeganTime, let endTime = event?.timestamp, endTime - beganTime < 0.2 {
+            tapHandler()
+            removeOffset()
+        }
+        else {
+            removeOffset()
+        }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -136,7 +141,7 @@ extension AssistiveButton {
         removeOffset()
     }
     
-    fileprivate func removeOffset() {
+    private func removeOffset() {
         isMoving = false
         
         UIView.beginAnimations("move", context: nil)

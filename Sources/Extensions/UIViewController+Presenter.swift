@@ -1,8 +1,4 @@
 //
-//  UIViewController+Presenter.swift
-//  Deboogger
-//
-//  Created by Nikita Ermolenko on 06/05/2017.
 //  Copyright © 2017 Nikita Ermolenko. All rights reserved.
 //
 
@@ -10,28 +6,28 @@ import Foundation
 import UIKit
 import ObjectiveC
 
-fileprivate enum AssociationKeys {
+private enum AssociationKeys {
     static var windowType: UInt8 = 0
     static var presenterType: UInt8 = 0
 }
 
 extension UIViewController {
     
-    fileprivate var alertWindow: UIWindow? {
+    private var alertWindow: UIWindow? {
         get {
             return objc_getAssociatedObject(self, &AssociationKeys.windowType) as? UIWindow
         }
         set {
-            objc_setAssociatedObject(self, &AssociationKeys.windowType, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociationKeys.windowType, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
-    fileprivate var presenter: UIViewController? {
+    private var presenter: UIViewController? {
         get {
             return objc_getAssociatedObject(self, &AssociationKeys.presenterType) as? UIViewController
         }
         set {
-            objc_setAssociatedObject(self, &AssociationKeys.presenterType, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociationKeys.presenterType, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }
