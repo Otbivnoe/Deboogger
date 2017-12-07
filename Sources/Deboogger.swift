@@ -4,7 +4,7 @@
 
 import UIKit
 
-@objcMembers public final class Deboogger {
+public final class Deboogger {
     
     private static weak var pluginViewController: PluginViewController?
     

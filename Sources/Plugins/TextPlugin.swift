@@ -4,10 +4,10 @@
 
 import UIKit
 
-@objc public protocol TextPlugin: Plugin {
+ public protocol TextPlugin: Plugin {
     
-    @objc var title: NSAttributedString { get }
-    @objc var description: NSAttributedString? { get }
+     var title: NSAttributedString { get }
+     var description: NSAttributedString? { get }
 }
 
 public extension TextPlugin {

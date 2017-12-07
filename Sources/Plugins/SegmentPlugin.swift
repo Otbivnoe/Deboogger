@@ -4,12 +4,12 @@
 
 import UIKit
 
-@objc public protocol SegmentPlugin: TextPlugin {
+ public protocol SegmentPlugin: TextPlugin {
     
-    @objc var items: [String] { get }
-    @objc var selectedIndex: Int { get }
+     var items: [String] { get }
+     var selectedIndex: Int { get }
     
-    @objc func segmentValueChanged(_ sender: UISegmentedControl)
+     func segmentValueChanged(_ sender: UISegmentedControl)
 }
 
 public extension SegmentPlugin {

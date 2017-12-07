@@ -82,7 +82,7 @@ final class AssistiveButton: UIButton {
     
     // MARK: - Actions
     
-    @objc private func buttonPressed() {
+     private func buttonPressed() {
         if isMoving {
             return
         }

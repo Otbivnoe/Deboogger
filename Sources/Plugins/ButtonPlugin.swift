@@ -4,9 +4,9 @@
 
 import UIKit
 
-@objc public protocol ButtonPlugin: TextPlugin {
+ public protocol ButtonPlugin: TextPlugin {
     
-    @objc func buttonPressed(_ sender: UIButton)
+    func buttonPressed(_ sender: UIButton)
 }
 
 public extension ButtonPlugin {

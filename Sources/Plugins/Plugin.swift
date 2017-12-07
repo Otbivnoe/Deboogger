@@ -4,10 +4,10 @@
 
 import UIKit
 
-@objc public protocol Plugin {
+ public protocol Plugin {
     
-    @objc var nib: UINib { get }
-    @objc var cellIdentifier: String { get }
+     var nib: UINib { get }
+     var cellIdentifier: String { get }
     
-    @objc func configure(_ cell: UITableViewCell)
+     func configure(_ cell: UITableViewCell)
 }
