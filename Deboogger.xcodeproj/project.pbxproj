@@ -16,6 +16,9 @@
 		840870451FD7B238007741AB /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8408703D1FD7B238007741AB /* ButtonTableViewCell.xib */; };
 		840870461FD7B238007741AB /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8408703E1FD7B238007741AB /* ButtonTableViewCell.swift */; };
 		840870481FD7B2C0007741AB /* SegmentPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840870471FD7B2C0007741AB /* SegmentPlugin.swift */; };
+		840F804D1FDA40DF00A9B466 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F804B1FDA40DF00A9B466 /* SliderTableViewCell.swift */; };
+		840F804E1FDA40DF00A9B466 /* SliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840F804C1FDA40DF00A9B466 /* SliderTableViewCell.xib */; };
+		84459B9D1FDA43BA00398995 /* SliderPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84459B9C1FDA43BA00398995 /* SliderPlugin.swift */; };
 		849B835B1EC7564000B0DF9D /* AssistiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849B83421EC7564000B0DF9D /* AssistiveButton.swift */; };
 		849B835C1EC7564000B0DF9D /* BaseTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849B83441EC7564000B0DF9D /* BaseTextTableViewCell.swift */; };
 		849B83631EC7564000B0DF9D /* Deboogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849B834B1EC7564000B0DF9D /* Deboogger.swift */; };
@@ -39,6 +42,9 @@
 		8408703D1FD7B238007741AB /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
 		8408703E1FD7B238007741AB /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		840870471FD7B2C0007741AB /* SegmentPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentPlugin.swift; sourceTree = "<group>"; };
+		840F804B1FDA40DF00A9B466 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
+		840F804C1FDA40DF00A9B466 /* SliderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderTableViewCell.xib; sourceTree = "<group>"; };
+		84459B9C1FDA43BA00398995 /* SliderPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPlugin.swift; sourceTree = "<group>"; };
 		849B83351EC754D400B0DF9D /* Deboogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Deboogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		849B83421EC7564000B0DF9D /* AssistiveButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssistiveButton.swift; sourceTree = "<group>"; };
 		849B83441EC7564000B0DF9D /* BaseTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextTableViewCell.swift; sourceTree = "<group>"; };
@@ -101,6 +107,15 @@
 			path = ButtonTableViewCell;
 			sourceTree = "<group>";
 		};
+		840F80481FDA401100A9B466 /* SliderTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				840F804B1FDA40DF00A9B466 /* SliderTableViewCell.swift */,
+				840F804C1FDA40DF00A9B466 /* SliderTableViewCell.xib */,
+			);
+			path = SliderTableViewCell;
+			sourceTree = "<group>";
+		};
 		849B832B1EC754D400B0DF9D = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +162,7 @@
 				840870361FD7B237007741AB /* DescriptionTableViewCell */,
 				840870331FD7B237007741AB /* SegmentTableViewCell */,
 				840870391FD7B238007741AB /* SwitchTableViewCell */,
+				840F80481FDA401100A9B466 /* SliderTableViewCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -168,6 +184,7 @@
 				849B83521EC7564000B0DF9D /* ButtonPlugin.swift */,
 				849B83541EC7564000B0DF9D /* SwitchPlugin.swift */,
 				840870471FD7B2C0007741AB /* SegmentPlugin.swift */,
+				84459B9C1FDA43BA00398995 /* SliderPlugin.swift */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
@@ -251,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				840870431FD7B238007741AB /* SwitchTableViewCell.xib in Resources */,
+				840F804E1FDA40DF00A9B466 /* SliderTableViewCell.xib in Resources */,
 				840870411FD7B238007741AB /* DescriptionTableViewCell.xib in Resources */,
 				8408703F1FD7B238007741AB /* SegmentTableViewCell.xib in Resources */,
 				840870451FD7B238007741AB /* ButtonTableViewCell.xib in Resources */,
@@ -274,6 +292,8 @@
 				849B83631EC7564000B0DF9D /* Deboogger.swift in Sources */,
 				849B83691EC7564000B0DF9D /* Plugin.swift in Sources */,
 				840870481FD7B2C0007741AB /* SegmentPlugin.swift in Sources */,
+				840F804D1FDA40DF00A9B466 /* SliderTableViewCell.swift in Sources */,
+				84459B9D1FDA43BA00398995 /* SliderPlugin.swift in Sources */,
 				849B83671EC7564000B0DF9D /* UIViewController+Presenter.swift in Sources */,
 				849B83681EC7564000B0DF9D /* ButtonPlugin.swift in Sources */,
 				849B83731EC756DA00B0DF9D /* UIView+SuperviewOffset.swift in Sources */,
