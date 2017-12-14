@@ -11,6 +11,7 @@ class BaseTextTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
         descriptionLabel.font = .systemFont(ofSize: 14, weight: .thin)
     }

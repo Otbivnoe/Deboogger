@@ -12,7 +12,6 @@ final class PluginViewController: UIViewController {
         tableView.dataSource = self
         tableView.estimatedRowHeight = 100
         tableView.separatorInset = .zero
-        tableView.allowsSelection = false
         return tableView
     }()
     
@@ -96,6 +95,11 @@ extension PluginViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let plugin = plugins[indexPath.row]
+        plugin.selectionAction()
     }
 }
 
