@@ -1,8 +1,4 @@
 //
-//  SliderTestPlugin.swift
-//  DebooggerExample
-//
-//  Created by Nikita Ermolenko on 08/12/2017.
 //  Copyright © 2017 Nikita Ermolenko. All rights reserved.
 //
 

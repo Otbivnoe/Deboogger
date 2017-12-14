@@ -16,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Deboogger.configure(with: [
             SwitchTestPlugin(),
-            SliderTestPlugin()
+            SliderTestPlugin(),
+            SegmentTestPlugin(),
+            ButtonTestPlugin()
         ])
         
         return true

@@ -7,7 +7,7 @@ import UIKit
  public protocol SegmentPlugin: TextPlugin {
     
      var items: [String] { get }
-     var selectedIndex: Int { get }
+     var initialSelectedIndex: Int { get }
     
      func segmentValueChanged(_ sender: UISegmentedControl)
 }

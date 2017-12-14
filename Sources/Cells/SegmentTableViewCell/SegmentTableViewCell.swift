@@ -19,7 +19,7 @@ final class SegmentTableViewCell: BaseTextTableViewCell {
             segmentControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 10, weight: .light)],
                                                   for: .normal)
         }
-        segmentControl.selectedSegmentIndex = plugin.selectedIndex
+        segmentControl.selectedSegmentIndex = Int(plugin.initialSelectedIndex)
     }
     
     @IBAction func segmentValueChanged(_ sender: UISegmentedControl) {

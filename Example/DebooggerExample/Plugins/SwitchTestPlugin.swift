@@ -12,7 +12,7 @@ struct SwitchTestPlugin: SwitchPlugin {
     }
     
     var description: NSAttributedString? {
-        return NSAttributedString(string: "Description")
+        return NSAttributedString(string: "Description Description Description Description Description Description Description Description Description Description ")
     }
     
     var isOn: Bool {

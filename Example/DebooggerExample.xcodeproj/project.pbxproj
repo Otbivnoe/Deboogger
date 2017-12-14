@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		840870521FD7B488007741AB /* Deboogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840870511FD7B481007741AB /* Deboogger.framework */; };
 		840870531FD7B488007741AB /* Deboogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 840870511FD7B481007741AB /* Deboogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8411201F1FE2286600513333 /* SegmentTestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8411201E1FE2286600513333 /* SegmentTestPlugin.swift */; };
+		841120211FE22FFF00513333 /* ButtonTestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841120201FE22FFF00513333 /* ButtonTestPlugin.swift */; };
 		84459BA31FDA4BFD00398995 /* SliderTestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84459BA21FDA4BFD00398995 /* SliderTestPlugin.swift */; };
 		8463C62A1EC8C0BD00AF7779 /* SwitchTestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463C6291EC8C0BD00AF7779 /* SwitchTestPlugin.swift */; };
 		849B83841EC757B800B0DF9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849B83831EC757B800B0DF9D /* AppDelegate.swift */; };
@@ -51,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		8408704C1FD7B481007741AB /* Deboogger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Deboogger.xcodeproj; path = ../Deboogger.xcodeproj; sourceTree = "<group>"; };
+		8411201E1FE2286600513333 /* SegmentTestPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentTestPlugin.swift; sourceTree = "<group>"; };
+		841120201FE22FFF00513333 /* ButtonTestPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTestPlugin.swift; sourceTree = "<group>"; };
 		84459BA21FDA4BFD00398995 /* SliderTestPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTestPlugin.swift; sourceTree = "<group>"; };
 		8463C6291EC8C0BD00AF7779 /* SwitchTestPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTestPlugin.swift; sourceTree = "<group>"; };
 		849B83801EC757B800B0DF9D /* DebooggerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebooggerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +86,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		841120141FE2263C00513333 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				8463C6291EC8C0BD00AF7779 /* SwitchTestPlugin.swift */,
+				84459BA21FDA4BFD00398995 /* SliderTestPlugin.swift */,
+				8411201E1FE2286600513333 /* SegmentTestPlugin.swift */,
+				841120201FE22FFF00513333 /* ButtonTestPlugin.swift */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
 		849B83771EC757B800B0DF9D = {
 			isa = PBXGroup;
 			children = (
@@ -108,8 +123,7 @@
 				849B838A1EC757B800B0DF9D /* Assets.xcassets */,
 				849B838C1EC757B800B0DF9D /* LaunchScreen.storyboard */,
 				849B838F1EC757B800B0DF9D /* Info.plist */,
-				8463C6291EC8C0BD00AF7779 /* SwitchTestPlugin.swift */,
-				84459BA21FDA4BFD00398995 /* SliderTestPlugin.swift */,
+				841120141FE2263C00513333 /* Plugins */,
 			);
 			path = DebooggerExample;
 			sourceTree = "<group>";
@@ -206,8 +220,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				841120211FE22FFF00513333 /* ButtonTestPlugin.swift in Sources */,
 				8463C62A1EC8C0BD00AF7779 /* SwitchTestPlugin.swift in Sources */,
 				849B83861EC757B800B0DF9D /* ViewController.swift in Sources */,
+				8411201F1FE2286600513333 /* SegmentTestPlugin.swift in Sources */,
 				849B83841EC757B800B0DF9D /* AppDelegate.swift in Sources */,
 				84459BA31FDA4BFD00398995 /* SliderTestPlugin.swift in Sources */,
 			);
