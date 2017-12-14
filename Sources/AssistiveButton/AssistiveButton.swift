@@ -14,13 +14,15 @@ final class AssistiveButton: UIButton {
     
     private var isMoving = false
     private var beginPoint = CGPoint.zero
-    private var timer: Timer?
-    
+    private var opacityTimer: Timer?
+    private let storage = UserDefaults(suiteName: "deboogger")
+
     private var tapHandler: TapHandler
     private var touchBeganTime: TimeInterval?
     
     deinit {
         stopTimer()
+        NotificationCenter.default.removeObserver(self)
     }
     
     init(tapHandler: @escaping TapHandler) {
@@ -49,8 +51,13 @@ final class AssistiveButton: UIButton {
     
     override func didMoveToSuperview() {
         if let superview = superview {
-            frame.origin.x = superview.bounds.width - Layout.size
-            frame.origin.y = superview.bounds.height / 2.0 - Layout.size / 2.0
+            if let frame = storage?.currentButtonFrame {
+                self.frame = frame
+            }
+            else {
+                frame.origin.x = superview.bounds.width - Layout.size
+                frame.origin.y = superview.bounds.height / 2.0 - Layout.size / 2.0
+            }
             startTimer()
         }
     }
@@ -62,9 +69,9 @@ final class AssistiveButton: UIButton {
     // MARK: - Timer
     
     private func startTimer() {
-        timer?.invalidate()
-        timer = nil
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(update), userInfo: nil, repeats: false)
+        opacityTimer?.invalidate()
+        opacityTimer = nil
+        opacityTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(update), userInfo: nil, repeats: false)
     }
     
     @objc private func update() {
@@ -76,8 +83,8 @@ final class AssistiveButton: UIButton {
     private func stopTimer() {
          alpha = 1.0
         
-        timer?.invalidate()
-        timer = nil
+        opacityTimer?.invalidate()
+        opacityTimer = nil
     }
     
     // MARK: - Actions
@@ -89,6 +96,29 @@ final class AssistiveButton: UIButton {
         stopTimer()
         startTimer()
         tapHandler()
+    }
+
+    // MARK: - Helpers
+
+    private func saveButtonPosition() {
+        storage?.currentButtonFrame = frame
+    }
+
+    private func removeOffset() {
+        UIView.animate(withDuration: 0.2, animations: {
+            if self.negativeOffsets.isEmpty {
+                self.smallestOffset.remove()
+            }
+            else {
+                self.negativeOffsets.forEach { offset in
+                    offset.remove()
+                }
+            }
+        }, completion: { _ in
+            self.isMoving = false
+            self.saveButtonPosition()
+            self.startTimer()
+        })
     }
 }
 
@@ -140,24 +170,25 @@ extension AssistiveButton {
         super.touchesCancelled(touches, with: event)
         removeOffset()
     }
-    
-    private func removeOffset() {
-        isMoving = false
-        
-        UIView.beginAnimations("move", context: nil)
-        UIView.setAnimationDuration(0.2)
-        
-        if negativeOffsets.isEmpty {
-            smallestOffset.remove()
+}
+
+private extension UserDefaults {
+
+    var currentButtonFrame: CGRect? {
+        get {
+            if let stringRect = string(forKey: #function) {
+                return CGRectFromString(stringRect)
+            }
+            return nil
         }
-        else {
-            negativeOffsets.forEach { offset in
-                offset.remove()
+        set {
+            if let value = newValue {
+                let stringRect = NSStringFromCGRect(value)
+                setValue(stringRect, forKey: #function)
+            }
+            else {
+                removeObject(forKey: #function)
             }
         }
-        
-        UIView.commitAnimations()
-        
-        startTimer()
     }
 }
