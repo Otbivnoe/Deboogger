@@ -37,8 +37,22 @@ final class PluginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Deboogger"
+
+        if let appInfo = Bundle.main.infoDictionary,
+            let shortVersionString = appInfo["CFBundleShortVersionString"] as? String,
+            let bundleVersion = appInfo["CFBundleVersion"] as? String,
+            let bundleName = appInfo["CFBundleName"] as? String{
+            let appVersion = "\(bundleName)\n\(shortVersionString) (\(bundleVersion))"
+
+            let titleLabel = UILabel()
+            titleLabel.text = appVersion
+            titleLabel.numberOfLines = 0
+            titleLabel.textAlignment = .center
+            titleLabel.sizeToFit()
+
+            navigationItem.titleView = titleLabel
+        }
+
         view.backgroundColor = .white
         view.addSubview(tableView)
         
@@ -47,6 +61,7 @@ final class PluginViewController: UIViewController {
         }
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closeButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "🛠", style: .done, target: self, action: #selector(settingsButtonPressed))
     }
 
     override func viewDidLayoutSubviews() {
@@ -58,6 +73,20 @@ final class PluginViewController: UIViewController {
     
     @objc private func closeButtonPressed() {
         dismiss(animated: true, completion: nil)
+    }
+
+    @objc private func settingsButtonPressed() {
+        guard let settingsURL = URL(string:UIApplicationOpenSettingsURLString) else {
+            return
+        }
+
+        if UIApplication.shared.canOpenURL(settingsURL) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(settingsURL)
+            } else {
+                UIApplication.shared.openURL(settingsURL)
+            }
+        }
     }
 }
 
