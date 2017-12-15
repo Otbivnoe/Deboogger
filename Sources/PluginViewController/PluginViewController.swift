@@ -8,15 +8,15 @@ final class PluginViewController: UIViewController {
 
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.delegate = self.configuration
+        tableView.dataSource = self.configuration
         tableView.estimatedRowHeight = 100
         tableView.separatorInset = .zero
         return tableView
     }()
-    
-    private var plugins: [Plugin]
-    
+
+    private let configuration: Configuration
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
@@ -25,9 +25,11 @@ final class PluginViewController: UIViewController {
         return false
     }
 
-    init(plugins: [Plugin]) {
-        self.plugins = plugins
+    init(configuration: Configuration) {
+        self.configuration = configuration
         super.init(nibName: nil, bundle: nil)
+        
+        self.configuration.tableView = tableView
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,10 +56,8 @@ final class PluginViewController: UIViewController {
 
         view.backgroundColor = .white
         view.addSubview(tableView)
-        
-        plugins.forEach { plugin in
-            self.tableView.register(plugin.nib, forCellReuseIdentifier: plugin.cellIdentifier)
-        }
+
+        configuration.confugre()
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closeButtonPressed))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "🛠", style: .done, target: self, action: #selector(settingsButtonPressed))
@@ -86,35 +86,5 @@ final class PluginViewController: UIViewController {
                 UIApplication.shared.openURL(settingsURL)
             }
         }
-    }
-}
-
-// MARK: - UITableViewDelegate
-
-extension PluginViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let plugin = plugins[indexPath.row]
-        plugin.selectionAction()
-    }
-}
-
-// MARK: - UITableViewDataSource
-
-extension PluginViewController: UITableViewDataSource {
- 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let plugin = plugins[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: plugin.cellIdentifier, for: indexPath)
-        plugin.configure(cell)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return plugins.count
     }
 }

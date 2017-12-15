@@ -14,13 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+//        Deboogger.configure(with: [
+//            SwitchTestPlugin(),
+//            SliderTestPlugin(),
+//            SegmentTestPlugin(),
+//            ButtonTestPlugin()
+//        ])
+
         Deboogger.configure(with: [
-            SwitchTestPlugin(),
-            SliderTestPlugin(),
-            SegmentTestPlugin(),
-            ButtonTestPlugin()
+            Section(title: "Section 1", plugins: [SwitchTestPlugin(), SliderTestPlugin()]),
+            Section(title: "Section 2", plugins: [SegmentTestPlugin(), ButtonTestPlugin()])
         ])
-        
+
         return true
     }
 
