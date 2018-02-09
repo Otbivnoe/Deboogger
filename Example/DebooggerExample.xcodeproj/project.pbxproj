@@ -55,6 +55,7 @@
 		8408704C1FD7B481007741AB /* Deboogger.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Deboogger.xcodeproj; path = ../Deboogger.xcodeproj; sourceTree = "<group>"; };
 		8411201E1FE2286600513333 /* SegmentTestPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentTestPlugin.swift; sourceTree = "<group>"; };
 		841120201FE22FFF00513333 /* ButtonTestPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTestPlugin.swift; sourceTree = "<group>"; };
+		8416BE31202D58D3008A45E0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		84459BA21FDA4BFD00398995 /* SliderTestPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTestPlugin.swift; sourceTree = "<group>"; };
 		8463C6291EC8C0BD00AF7779 /* SwitchTestPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTestPlugin.swift; sourceTree = "<group>"; };
 		849B83801EC757B800B0DF9D /* DebooggerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebooggerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +124,7 @@
 				849B838A1EC757B800B0DF9D /* Assets.xcassets */,
 				849B838C1EC757B800B0DF9D /* LaunchScreen.storyboard */,
 				849B838F1EC757B800B0DF9D /* Info.plist */,
+				8416BE31202D58D3008A45E0 /* Config.xcconfig */,
 				841120141FE2263C00513333 /* Plugins */,
 			);
 			path = DebooggerExample;
@@ -261,6 +263,7 @@
 /* Begin XCBuildConfiguration section */
 		849B83901EC757B800B0DF9D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8416BE31202D58D3008A45E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -318,6 +321,7 @@
 		};
 		849B83911EC757B800B0DF9D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8416BE31202D58D3008A45E0 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -371,12 +375,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GPVA8JVMU3;
 				INFOPLIST_FILE = DebooggerExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.otbivnoe.DebooggerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
@@ -387,12 +394,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GPVA8JVMU3;
 				INFOPLIST_FILE = DebooggerExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.otbivnoe.DebooggerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};

@@ -8,7 +8,7 @@ import Deboogger
 final class SegmentTestPlugin: SegmentPlugin {
 
     var items: [String] {
-        return ["1", "2", "3"]
+        return ["First", "2", "Third"]
     }
 
     var title: NSAttributedString {
