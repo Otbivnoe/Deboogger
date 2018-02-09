@@ -4,62 +4,91 @@
 
 import UIKit
 
-public let DebooggerWillShow: NSNotification.Name = .init(rawValue: "DebooggerWillShow")
-public let DebooggerDidShow: NSNotification.Name = .init(rawValue: "DebooggerDidShow")
-public let DebooggerWillHide: NSNotification.Name = .init(rawValue: "DebooggerWillHide")
-public let DebooggerEndHide: NSNotification.Name = .init(rawValue: "DebooggerEndHide")
+extension NSNotification.Name {
+    public static let DebooggerWillShow: NSNotification.Name = .init(rawValue: "DebooggerWillShow")
+    public static let DebooggerDidShow: NSNotification.Name = .init(rawValue: "DebooggerDidShow")
+    public static let DebooggerWillHide: NSNotification.Name = .init(rawValue: "DebooggerWillHide")
+    public static let DebooggerDidHide: NSNotification.Name = .init(rawValue: "DebooggerDidHide")
+}
+
+let AssistiveButtonWindowLevel: UIWindowLevel = UIWindowLevelAlert + 1
+let PluginControllerWindowLevel: UIWindowLevel = UIWindowLevelStatusBar - 1
 
 public final class Deboogger {
 
-    private static weak var pluginViewController: PluginViewController?
-    
+    public static let shared = Deboogger()
+
+    private weak var rootViewController: UIViewController?
+    private var assistiveButtonPresenterViewController = UIViewController()
+
+    private lazy var assistiveButtonWindow: UIWindow = {
+        let size = AssistiveButton.Layout.size
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: size, height: size))
+        window.windowLevel = AssistiveButtonWindowLevel
+        window.rootViewController = self.assistiveButtonPresenterViewController
+        window.isHidden = true
+        return window
+    }()
+
+    private weak var pluginViewController: PluginViewController?
+
+    private init() {}
+
+    // MARK: - Configurations
+
     public static func configure(with plugins: [Plugin]) {
-        configure(with: PluginsConfiguration(plugins: plugins))
+        shared.configure(with: PluginsConfiguration(plugins: plugins))
     }
 
     public static func configure(with sections: [Section]) {
-        configure(with: SectionsConfiguration(sections: sections))
+        shared.configure(with: SectionsConfiguration(sections: sections))
     }
 
-    public static func reload() {
+    // MARK: - Appearance
+
+    public func reload() {
         pluginViewController?.tableView.reloadData()
     }
     
-    public static func close() {
-        pluginViewController?.dismiss(animated: true, completion: nil)
+    public func close() {
+        rootViewController?.beginAppearanceTransition(true, animated: true)
+        NotificationCenter.default.post(name: .DebooggerWillHide, object: nil)
+
+        pluginViewController?.dismiss(animated: true, completion: { [unowned self] in
+            self.assistiveButtonWindow.isHidden = false
+            self.rootViewController?.endAppearanceTransition()
+            NotificationCenter.default.post(name: .DebooggerDidHide, object: nil)
+        })
     }
 
     // MARK: - Helpers
 
-    private static func configure(with configuration: Configuration) {
+    private func configure(with configuration: Configuration) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            let button = AssistiveButton(tapHandler: {
-                let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+
+            let button = AssistiveButton(tapHandler: { [unowned self] in
+                self.rootViewController = UIApplication.shared.keyWindow?.rootViewController
 
                 let pluginViewController = PluginViewController(configuration: configuration)
-                pluginViewController.willHideHandler = { [weak rootViewController] in
-                    rootViewController?.beginAppearanceTransition(true, animated: true)
-                    NotificationCenter.default.post(name: DebooggerWillHide, object: nil)
-                }
-
-                pluginViewController.didHideHandler = { [weak rootViewController] in
-                    rootViewController?.endAppearanceTransition()
-                    NotificationCenter.default.post(name: DebooggerEndHide, object: nil)
+                pluginViewController.closeEventHandler = {
+                    self.close()
                 }
 
                 let navigationController = UINavigationController(rootViewController: pluginViewController)
-                Deboogger.pluginViewController = pluginViewController
+                self.pluginViewController = pluginViewController
 
-                rootViewController?.beginAppearanceTransition(false, animated: true)
-                NotificationCenter.default.post(name: DebooggerWillShow, object: nil)
+                self.rootViewController?.beginAppearanceTransition(false, animated: true)
+                NotificationCenter.default.post(name: .DebooggerWillShow, object: nil)
 
-                navigationController.present { [weak rootViewController] in
-                    rootViewController?.endAppearanceTransition()
-                    NotificationCenter.default.post(name: DebooggerDidShow, object: nil)
+                self.assistiveButtonWindow.isHidden = true
+                navigationController.present {
+                    self.rootViewController?.endAppearanceTransition()
+                    NotificationCenter.default.post(name: .DebooggerDidShow, object: nil)
                 }
             })
 
-            UIApplication.shared.keyWindow?.addSubview(button)
+            self.assistiveButtonWindow.isHidden = false
+            self.assistiveButtonWindow.addSubview(button)
         }
     }
 }

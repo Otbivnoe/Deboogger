@@ -4,14 +4,14 @@
 
 import UIKit
 
-typealias TapHandler = () -> Void
-
 final class AssistiveButton: UIButton {
     
-    private enum Layout {
+    enum Layout {
         static let size: CGFloat = 50
     }
-    
+
+    typealias TapHandler = () -> Void
+
     private var isMoving = false
     private var beginPoint = CGPoint.zero
     private var opacityTimer: Timer?
@@ -50,16 +50,14 @@ final class AssistiveButton: UIButton {
     }
     
     override func didMoveToSuperview() {
-        if let superview = superview {
-            if let frame = storage?.currentButtonFrame {
-                self.frame = frame
-            }
-            else {
-                frame.origin.x = superview.bounds.width - Layout.size
-                frame.origin.y = superview.bounds.height / 2.0 - Layout.size / 2.0
-            }
-            startTimer()
+        if let frame = storage?.currentButtonFrame {
+            window?.frame = frame
         }
+        else {
+            window?.frame.origin.x = UIScreen.main.bounds.width - Layout.size
+            window?.frame.origin.y = UIScreen.main.bounds.height / 2.0 - Layout.size / 2.0
+        }
+        startTimer()
     }
     
     @objc private func orientationChanged() {
@@ -101,16 +99,16 @@ final class AssistiveButton: UIButton {
     // MARK: - Helpers
 
     private func saveButtonPosition() {
-        storage?.currentButtonFrame = frame
+        storage?.currentButtonFrame = window?.frame
     }
 
     private func removeOffset() {
         UIView.animate(withDuration: 0.2, animations: {
-            if self.negativeOffsets.isEmpty {
-                self.smallestOffset.remove()
+            if self.window?.negativeOffsets.isEmpty == true {
+                self.window?.smallestOffset.remove()
             }
             else {
-                self.negativeOffsets.forEach { offset in
+                self.window?.negativeOffsets.forEach { offset in
                     offset.remove()
                 }
             }
@@ -129,7 +127,7 @@ extension AssistiveButton {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         touchBeganTime = event?.timestamp
-        
+
         guard let touch = touches.first else {
             return
         }
@@ -149,8 +147,8 @@ extension AssistiveButton {
         let offsetX = currentPosition.x - beginPoint.x
         let offsetY = currentPosition.y - beginPoint.y
         
-        center.x += offsetX
-        center.y += offsetY
+        window?.center.x += offsetX
+        window?.center.y += offsetY
         
         isMoving = true
     }

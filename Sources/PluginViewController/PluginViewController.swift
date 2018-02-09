@@ -6,8 +6,7 @@ import UIKit
 
 final class PluginViewController: UIViewController {
 
-    var willHideHandler: (() -> Void)?
-    var didHideHandler: (() -> Void)?
+    var closeEventHandler: (() -> Void)?
 
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -74,10 +73,7 @@ final class PluginViewController: UIViewController {
     // MARK: Actions
     
     @objc private func closeButtonPressed() {
-        willHideHandler?()
-        dismiss(animated: true) { [weak self] in
-            self?.didHideHandler?()
-        }
+        closeEventHandler?()
     }
 
     @objc private func settingsButtonPressed() {

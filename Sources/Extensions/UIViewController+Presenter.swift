@@ -38,9 +38,9 @@ extension UIViewController {
         presenter = UIViewController()
         
         alertWindow = UIWindow(frame: UIScreen.main.bounds)
-        alertWindow?.windowLevel = UIWindowLevelNormal
+        alertWindow?.windowLevel = PluginControllerWindowLevel
         alertWindow?.rootViewController = presenter
-        alertWindow?.makeKeyAndVisible()
+        alertWindow?.isHidden = false
 
         presenter?.present(self, animated: true, completion: {
             completion()

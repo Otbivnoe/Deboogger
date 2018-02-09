@@ -14,8 +14,8 @@ enum Offset {
         switch self {
         case let .top(view):    return view.frame.origin.y
         case let .left(view):   return view.frame.origin.x
-        case let .bottom(view): return view.superview!.bounds.height - (view.frame.origin.y + view.bounds.height)
-        case let .right(view):  return view.superview!.bounds.width - (view.frame.origin.x + view.bounds.width)
+        case let .bottom(view): return UIScreen.main.bounds.height - (view.frame.origin.y + view.bounds.height)
+        case let .right(view):  return UIScreen.main.bounds.width - (view.frame.origin.x + view.bounds.width)
         }
     }
     
