@@ -34,7 +34,7 @@ extension UIViewController {
 
 extension UIViewController {
     
-    func present() {
+    func present(completion: @escaping () -> Void) {
         presenter = UIViewController()
         
         alertWindow = UIWindow(frame: UIScreen.main.bounds)
@@ -42,6 +42,8 @@ extension UIViewController {
         alertWindow?.rootViewController = presenter
         alertWindow?.makeKeyAndVisible()
 
-        presenter?.present(self, animated: true, completion: nil)
+        presenter?.present(self, animated: true, completion: {
+            completion()
+        })
     }
 }

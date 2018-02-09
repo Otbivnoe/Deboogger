@@ -167,8 +167,8 @@
 				849B83431EC7564000B0DF9D /* Cells */,
 				849B834C1EC7564000B0DF9D /* Extensions */,
 				849B83511EC7564000B0DF9D /* Plugins */,
-				8474585D1FE38B9D00C3B0FA /* Section.swift */,
 				8474585F1FE38E6100C3B0FA /* PluginViewController */,
+				8474585D1FE38B9D00C3B0FA /* Section.swift */,
 				849B834B1EC7564000B0DF9D /* Deboogger.swift */,
 			);
 			path = Sources;
