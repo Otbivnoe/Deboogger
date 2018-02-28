@@ -14,12 +14,29 @@ extension NSNotification.Name {
 let AssistiveButtonWindowLevel: UIWindowLevel = UIWindowLevelAlert + 1
 let PluginControllerWindowLevel: UIWindowLevel = UIWindowLevelStatusBar - 1
 
+private final class AssistiveButtonPresenterViewController: UIViewController {
+    
+    override var prefersStatusBarHidden: Bool {
+        if let vc = UIApplication.shared.keyWindow?.rootViewController {
+            return vc.prefersStatusBarHidden
+        }
+        return false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if let vc = UIApplication.shared.keyWindow?.rootViewController {
+            return vc.preferredStatusBarStyle
+        }
+        return .lightContent
+    }
+}
+
 public final class Deboogger {
 
     public static let shared = Deboogger()
 
     private weak var rootViewController: UIViewController?
-    private var assistiveButtonPresenterViewController = UIViewController()
+    private var assistiveButtonPresenterViewController = AssistiveButtonPresenterViewController()
 
     private lazy var assistiveButtonWindow: UIWindow = {
         let size = AssistiveButton.Layout.size
