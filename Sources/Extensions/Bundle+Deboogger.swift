@@ -1,12 +1,10 @@
 //
-//  Copyright © 2018 Rosberry. All rights reserved.
+//  Copyright © 2018 Nikita Ermolenko. All rights reserved.
 //
 
 import Foundation
 
 extension Bundle {
 
-    static var deboogger: Bundle {
-        return Bundle(for: Deboogger.self)
-    }
+    static var deboogger = Bundle(for: Deboogger.self)
 }
