@@ -13,7 +13,7 @@ final class SectionsConfiguration: NSObject, Configuration {
         self.sections = sections
     }
 
-    func confugre() {
+    func configure() {
         sections.flatMap { section in
             return section.plugins
         }.forEach { plugin in

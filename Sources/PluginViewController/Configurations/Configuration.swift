@@ -5,5 +5,5 @@
 protocol Configuration: UITableViewDataSource, UITableViewDelegate {
 
     var tableView: UITableView? { get set }
-    func confugre() 
+    func configure() 
 }

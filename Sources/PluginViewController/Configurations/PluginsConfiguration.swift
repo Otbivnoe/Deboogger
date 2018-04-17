@@ -13,7 +13,7 @@ final class PluginsConfiguration: NSObject, Configuration {
         self.plugins = plugins
     }
 
-    func confugre() {
+    func configure() {
         plugins.forEach { plugin in
             self.tableView?.register(plugin.nib, forCellReuseIdentifier: plugin.cellIdentifier)
         }

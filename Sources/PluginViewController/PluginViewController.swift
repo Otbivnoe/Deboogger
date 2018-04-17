@@ -59,7 +59,7 @@ final class PluginViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(tableView)
 
-        configuration.confugre()
+        configuration.configure()
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closeButtonPressed))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "🛠", style: .done, target: self, action: #selector(settingsButtonPressed))
