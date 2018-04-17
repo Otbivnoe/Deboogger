@@ -19,7 +19,7 @@ public extension TextPlugin {
     }
     
     var nib: UINib {
-        return UINib(nibName: String(describing: Cell.self), bundle: Bundle(for: Deboogger.self))
+        return UINib(nibName: cellIdentifier, bundle: Bundle.deboogger)
     }
     
     var cellIdentifier: String {

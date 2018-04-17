@@ -57,8 +57,16 @@ public final class Deboogger {
         shared.configure(with: PluginsConfiguration(plugins: plugins))
     }
 
+    public static func configure(with plugins: Plugin...) {
+        configure(with: plugins)
+    }
+
     public static func configure(with sections: [Section]) {
         shared.configure(with: SectionsConfiguration(sections: sections))
+    }
+
+    public static func configure(with sections: Section...) {
+        configure(with: sections)
     }
 
     // MARK: - Appearance

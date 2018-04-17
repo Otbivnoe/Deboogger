@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06D462662085DC610005009C /* Bundle+Deboogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D462652085DC610005009C /* Bundle+Deboogger.swift */; };
 		8408703F1FD7B238007741AB /* SegmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840870341FD7B237007741AB /* SegmentTableViewCell.xib */; };
 		840870401FD7B238007741AB /* SegmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840870351FD7B237007741AB /* SegmentTableViewCell.swift */; };
 		840870411FD7B238007741AB /* DescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840870371FD7B237007741AB /* DescriptionTableViewCell.xib */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06D462652085DC610005009C /* Bundle+Deboogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Deboogger.swift"; sourceTree = "<group>"; };
 		840870341FD7B237007741AB /* SegmentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SegmentTableViewCell.xib; sourceTree = "<group>"; };
 		840870351FD7B237007741AB /* SegmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentTableViewCell.swift; sourceTree = "<group>"; };
 		840870371FD7B237007741AB /* DescriptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescriptionTableViewCell.xib; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				849B83501EC7564000B0DF9D /* UIViewController+Presenter.swift */,
 				849B83721EC756DA00B0DF9D /* UIView+SuperviewOffset.swift */,
+				06D462652085DC610005009C /* Bundle+Deboogger.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				849B836C1EC7564000B0DF9D /* TextPlugin.swift in Sources */,
 				847458661FE38EFD00C3B0FA /* PluginsConfiguration.swift in Sources */,
 				849B835B1EC7564000B0DF9D /* AssistiveButton.swift in Sources */,
+				06D462662085DC610005009C /* Bundle+Deboogger.swift in Sources */,
 				849B83631EC7564000B0DF9D /* Deboogger.swift in Sources */,
 				849B83691EC7564000B0DF9D /* Plugin.swift in Sources */,
 				8474585E1FE38B9D00C3B0FA /* Section.swift in Sources */,

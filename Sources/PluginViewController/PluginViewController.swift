@@ -10,8 +10,8 @@ final class PluginViewController: UIViewController {
 
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = self.configuration
-        tableView.dataSource = self.configuration
+        tableView.delegate = configuration
+        tableView.dataSource = configuration
         tableView.estimatedRowHeight = 100
         tableView.separatorInset = .zero
         return tableView
@@ -31,7 +31,7 @@ final class PluginViewController: UIViewController {
         self.configuration = configuration
         super.init(nibName: nil, bundle: nil)
         
-        self.configuration.tableView = tableView
+        configuration.tableView = tableView
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,7 +59,7 @@ final class PluginViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(tableView)
 
-        configuration.confugre()
+        configuration.configure()
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closeButtonPressed))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "🛠", style: .done, target: self, action: #selector(settingsButtonPressed))
