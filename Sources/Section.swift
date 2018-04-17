@@ -13,4 +13,8 @@ public final class Section {
         self.title = title
         self.plugins = plugins
     }
+
+    public convenience init(title: String, plugins: Plugin...) {
+        self.init(title: title, plugins: plugins)
+    }
 }
