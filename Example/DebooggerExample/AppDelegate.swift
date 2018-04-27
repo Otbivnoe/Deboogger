@@ -11,16 +11,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//        Deboogger.configure(with:
-//            SwitchTestPlugin(),
-//            SliderTestPlugin(),
-//            SegmentTestPlugin(),
-//            ButtonTestPlugin()
-//        )
+        let plugin = UserDefaultsSwitchPlugin(title: .init(string: "UserDefault test"),
+                                              key: "test_key")
+
+        //        Deboogger.configure(with:
+        //            SwitchTestPlugin(),
+        //            SliderTestPlugin(),
+        //            SegmentTestPlugin(),
+        //            ButtonTestPlugin(),
+        //            plugin
+        //        )
 
         Deboogger.configure(with:
             Section(title: "Section 1", plugins: SwitchTestPlugin(), SliderTestPlugin()),
-            Section(title: "Section 2", plugins: SegmentTestPlugin(), ButtonTestPlugin())
+                            Section(title: "Section 2", plugins: SegmentTestPlugin(), ButtonTestPlugin(), plugin)
         )
 
         return true

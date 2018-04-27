@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0649FDC32092E103008F4B90 /* UserDefaultsSwitchPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0649FDC22092E103008F4B90 /* UserDefaultsSwitchPlugin.swift */; };
 		06D462662085DC610005009C /* Bundle+Deboogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D462652085DC610005009C /* Bundle+Deboogger.swift */; };
 		8408703F1FD7B238007741AB /* SegmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840870341FD7B237007741AB /* SegmentTableViewCell.xib */; };
 		840870401FD7B238007741AB /* SegmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840870351FD7B237007741AB /* SegmentTableViewCell.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0649FDC22092E103008F4B90 /* UserDefaultsSwitchPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsSwitchPlugin.swift; sourceTree = "<group>"; };
 		06D462652085DC610005009C /* Bundle+Deboogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Deboogger.swift"; sourceTree = "<group>"; };
 		840870341FD7B237007741AB /* SegmentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SegmentTableViewCell.xib; sourceTree = "<group>"; };
 		840870351FD7B237007741AB /* SegmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentTableViewCell.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				849B83541EC7564000B0DF9D /* SwitchPlugin.swift */,
 				840870471FD7B2C0007741AB /* SegmentPlugin.swift */,
 				84459B9C1FDA43BA00398995 /* SliderPlugin.swift */,
+				0649FDC22092E103008F4B90 /* UserDefaultsSwitchPlugin.swift */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				8474585E1FE38B9D00C3B0FA /* Section.swift in Sources */,
 				840870481FD7B2C0007741AB /* SegmentPlugin.swift in Sources */,
 				840F804D1FDA40DF00A9B466 /* SliderTableViewCell.swift in Sources */,
+				0649FDC32092E103008F4B90 /* UserDefaultsSwitchPlugin.swift in Sources */,
 				84459B9D1FDA43BA00398995 /* SliderPlugin.swift in Sources */,
 				849B83671EC7564000B0DF9D /* UIViewController+Presenter.swift in Sources */,
 				849B83681EC7564000B0DF9D /* ButtonPlugin.swift in Sources */,
